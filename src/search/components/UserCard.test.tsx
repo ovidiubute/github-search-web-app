@@ -5,6 +5,7 @@ import { UserCard } from "./UserCard";
 it("renders complete user information", () => {
   const { getByText } = render(
     <UserCard
+      id="XVASDIOL"
       username="testuser"
       company="Hootsuite"
       profileUrl="https://github.com/ovidiu"

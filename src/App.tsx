@@ -22,9 +22,13 @@ export const App = function () {
       <section>
         <SearchInput />
       </section>
-      <section>
-        <UserCard {...testResults[0]} />
-      </section>
+      {testResults.length > 0 && (
+        <section>
+          {testResults.map((result) => (
+            <UserCard {...result} />
+          ))}
+        </section>
+      )}
     </div>
   );
 };
