@@ -57,7 +57,7 @@ export const App = () => {
       {searchResult.nodes.length > 0 && (
         <section data-testid="section-results-full">
           {searchResult.nodes.map((user) => {
-            return <UserCard {...fromUserToCardProps(user)} />;
+            return <UserCard key={user.id} {...fromUserToCardProps(user)} />;
           })}
         </section>
       )}
