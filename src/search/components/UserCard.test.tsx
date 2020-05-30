@@ -1,5 +1,5 @@
-import React from "react";
 import { render } from "@testing-library/react";
+import React from "react";
 import { UserCard } from "./UserCard";
 
 it("renders complete user information", () => {
@@ -9,7 +9,6 @@ it("renders complete user information", () => {
       username="testuser"
       company="Hootsuite"
       profileUrl="https://github.com/ovidiu"
-      email="test123@gmail.com"
       name="TestUser123"
       location="United States"
       bio="Here is a short testing bio"

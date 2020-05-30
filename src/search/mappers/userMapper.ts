@@ -1,18 +1,8 @@
-import { User } from "../types/user";
 import { UserCardProps } from "../components/UserCard";
+import { User } from "../types/user";
 
 export const fromUserToCardProps = (user: User): UserCardProps => {
-  const {
-    id,
-    url,
-    bio,
-    login,
-    avatarUrl,
-    company,
-    email,
-    location,
-    name,
-  } = user;
+  const { id, url, bio, login, avatarUrl, company, location, name } = user;
 
   return {
     profileUrl: url,
@@ -21,7 +11,6 @@ export const fromUserToCardProps = (user: User): UserCardProps => {
     bio,
     avatarUrl,
     company,
-    email,
     location,
     name,
   };
