@@ -1,34 +1,17 @@
 import React from "react";
 import "./App.css";
 import { SearchInput } from "./search/components/SearchInput";
-import { UserCard, UserCardProps } from "./search/components/UserCard";
+import { SearchButton } from "./search/components/SearchButton";
 
-export const App = function () {
-  const testResults: Array<UserCardProps> = [
-    {
-      username: "ovidiu",
-      name: "Ovidiu Curcan",
-      profileUrl: "https://github.com/ovidiu",
-      email: "",
-      company: null,
-      location: "Amsterdam, NL",
-      bio: "Fake bio",
-      avatarUrl: "https://avatars3.githubusercontent.com/u/271461?v=4",
-    },
-  ];
-
+export const App = () => {
   return (
     <div>
       <section>
-        <SearchInput />
+        <form>
+          <SearchInput />
+          <SearchButton />
+        </form>
       </section>
-      {testResults.length > 0 && (
-        <section>
-          {testResults.map((result) => (
-            <UserCard {...result} />
-          ))}
-        </section>
-      )}
     </div>
   );
 };
