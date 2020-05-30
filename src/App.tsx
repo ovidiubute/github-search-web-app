@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
-import { SearchButton } from "./search/components/SearchButton";
-import { SearchInput } from "./search/components/SearchInput";
 import { UserCard } from "./search/components/UserCard";
 import { fromUserToCardProps } from "./search/mappers/userMapper";
 import { SearchResults, searchUsers } from "./search/services/searchService";
@@ -17,18 +15,29 @@ export const App = () => {
     },
   });
   const [query, setQuery] = useState<string>("");
+  const searchInputEl = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const node = searchInputEl?.current;
+    node?.focus();
+  }, []);
 
   return (
     <div>
       <section>
         <form>
-          <SearchInput
+          <input
+            type="text"
+            placeholder="Search GitHub users"
+            ref={searchInputEl}
             value={query}
             onChange={(e) => {
               setQuery(e.target.value);
             }}
           />
-          <SearchButton
+          <input
+            type="submit"
+            value="OK"
             onClick={async (e) => {
               e.preventDefault();
 
