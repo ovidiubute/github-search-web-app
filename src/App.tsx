@@ -15,6 +15,7 @@ export const App = () => {
     },
   });
   const [query, setQuery] = useState<string>("");
+  const [dirty, setDirty] = useState<boolean>(false);
   const searchInputEl = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -23,8 +24,8 @@ export const App = () => {
   }, []);
 
   return (
-    <div>
-      <section>
+    <div className="main">
+      <section data-testid="section-form">
         <form>
           <input
             type="text"
@@ -43,12 +44,18 @@ export const App = () => {
 
               const results = await searchUsers(query);
               setSearchResult(results);
+              setDirty(true);
             }}
           />
         </form>
       </section>
+      {dirty && (
+        <section data-testid="section-results-summary">
+          <p>Showing {searchResult.userCount} results.</p>
+        </section>
+      )}
       {searchResult.nodes.length > 0 && (
-        <section>
+        <section data-testid="section-results-full">
           {searchResult.nodes.map((user) => {
             return <UserCard {...fromUserToCardProps(user)} />;
           })}
