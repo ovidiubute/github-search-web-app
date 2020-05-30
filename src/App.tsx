@@ -1,16 +1,19 @@
 import React from "react";
 import "./App.css";
 import { SearchInput } from "./search/components/SearchInput";
-import { UserCard } from "./search/components/UserCard";
+import { UserCard, UserCardProps } from "./search/components/UserCard";
 
 export const App = function () {
-  const testResults = [
+  const testResults: Array<UserCardProps> = [
     {
+      username: "ovidiu",
       name: "Ovidiu Curcan",
+      profileUrl: "https://github.com/ovidiu",
       email: "",
       company: null,
       location: "Amsterdam, NL",
       bio: "Fake bio",
+      avatarUrl: "https://avatars3.githubusercontent.com/u/271461?v=4",
     },
   ];
 
