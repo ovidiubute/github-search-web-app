@@ -14,6 +14,18 @@ export const searchUsers = async (
   searchTerm: string
 ): Promise<SearchResults> => {
   return new Promise((resolve) => {
+    if (searchTerm.trim() === "") {
+      return resolve({
+        userCount: 0,
+        nodes: [],
+        pageInfo: {
+          hasNextPage: false,
+          hasPreviousPage: false,
+          endCursor: null,
+        },
+      });
+    }
+
     return resolve({
       userCount: 1068,
       nodes: [
