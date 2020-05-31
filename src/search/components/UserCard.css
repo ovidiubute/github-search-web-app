@@ -1,0 +1,45 @@
+.userCard {
+  border: 1px solid rgb(225, 228, 232);
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+
+.userCard > * {
+  margin-bottom: 4px;
+}
+
+.userCard > *:last-child {
+  margin-bottom: 0px;
+}
+
+.userCard header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.userCard header .avatar {
+  border-radius: 50%;
+  border: 2px solid #24292e66;
+}
+
+.userCard .profileName {
+  font-size: 20px;
+  text-decoration: none;
+  align-self: flex-start;
+}
+
+.userCard .userName {
+  font-size: 12px;
+  vertical-align: text-top;
+}
+
+.userCard .userLocation {
+  font-size: 12px;
+}
+
+.userCard .userName::before {
+  content: "• ";
+}
