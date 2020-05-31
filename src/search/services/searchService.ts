@@ -74,6 +74,13 @@ export const searchUsers = async (
                 location
                 bio
                 avatarUrl
+                followers{
+                  totalCount
+                }
+                following{
+                  totalCount
+                }
+                createdAt
               }
             }
             pageInfo{

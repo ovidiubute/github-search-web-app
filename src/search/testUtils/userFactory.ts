@@ -27,6 +27,9 @@ export function buildTenResults(): SearchResults {
         location: i % 2 === 0 ? `location_${i}` : null,
         login: `login_${i}`,
         url: `https://google.com/${i}`,
+        followers: { totalCount: i * 5 },
+        following: { totalCount: i * 2 },
+        createdAt: new Date().toDateString(),
       };
 
       return u;

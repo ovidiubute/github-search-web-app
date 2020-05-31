@@ -12,6 +12,9 @@ it("renders complete user information", () => {
       name="TestUser123"
       location="United States"
       bio="Here is a short testing bio"
+      followers={3}
+      following={50}
+      createdAt="2019-05-02T12:08:02Z"
       avatarUrl="https://avatars0.githubusercontent.com/u/63847?u=4d62a73a474980e391b256df9568f0b052e86ccb&v=4"
     />
   );

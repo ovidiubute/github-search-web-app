@@ -3,9 +3,14 @@ import { User } from "../types/user";
 import { MapPin } from "./MapPin";
 import "./UserCard.css";
 
-export type UserCardProps = Omit<User, "login" | "url"> & {
+export type UserCardProps = Omit<
+  User,
+  "login" | "url" | "followers" | "following"
+> & {
   username: string;
   profileUrl: string;
+  followers: number;
+  following: number;
 };
 
 export const UserCard = (props: UserCardProps) => {
@@ -20,6 +25,9 @@ export const UserCard = (props: UserCardProps) => {
           alt=""
           loading="lazy"
         />
+        <div className="headerInfo">
+          <span>{props.followers} Followers</span>
+        </div>
       </header>
       <section>
         <aside>
