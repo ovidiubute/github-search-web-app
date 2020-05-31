@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Button } from "../../common/Button";
 import { SearchResults, searchUsers } from "../services/searchService";
+import "./SearchFormSection.css";
 import { SearchInput } from "./SearchInput";
 
 export type SearchFormSectionProps = {

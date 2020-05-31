@@ -9,26 +9,3 @@
 .main > section {
   margin-bottom: 8px;
 }
-
-.sectionForm > form {
-  display: flex;
-  width: 400px;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.sectionForm > form > .searchInput {
-  margin-right: 8px;
-}
-
-.sectionResults {
-  width: 100%;
-}
-
-.sectionResults > .userCard {
-  margin-bottom: 8px;
-}
-
-.sectionResults > .userCard:last-child {
-  margin-bottom: 0;
-}

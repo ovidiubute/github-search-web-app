@@ -1,0 +1,10 @@
+.sectionForm > form {
+  display: flex;
+  width: 50vw;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sectionForm > form > .searchInput {
+  margin-right: 8px;
+}

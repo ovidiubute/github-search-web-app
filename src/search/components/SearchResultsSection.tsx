@@ -1,6 +1,7 @@
 import * as React from "react";
 import { fromUserToCardProps } from "../mappers/userMapper";
 import { SearchResults } from "../services/searchService";
+import "./SearchResultsSection.css";
 import { UserCard } from "./UserCard";
 
 export type SearchResultsSectionProps = {

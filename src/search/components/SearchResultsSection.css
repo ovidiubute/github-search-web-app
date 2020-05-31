@@ -1,0 +1,11 @@
+.sectionResults {
+  width: 100%;
+}
+
+.sectionResults > .userCard {
+  margin-bottom: 8px;
+}
+
+.sectionResults > .userCard:last-child {
+  margin-bottom: 0;
+}
