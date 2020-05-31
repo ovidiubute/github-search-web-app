@@ -35,15 +35,28 @@ export const UserCard = (props: UserCardProps) => {
       </header>
       <section>
         <aside>
-          <a
-            className="profileName"
-            href={props.profileUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {props.name}
-          </a>{" "}
-          <span className="userName">{props.username}</span>
+          {props.name ? (
+            <>
+              <a
+                className="profileName"
+                href={props.profileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {props.name}
+              </a>
+              <span className="userName">{props.username}</span>
+            </>
+          ) : (
+            <a
+              className="profileName"
+              href={props.profileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {props.username}
+            </a>
+          )}
         </aside>
         {props.location && (
           <div>
