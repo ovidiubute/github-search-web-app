@@ -7,10 +7,10 @@ export type User = {
   location: string | null;
   bio: string | null;
   avatarUrl: string;
-  followers: {
+  followers?: {
     totalCount: number;
   };
-  following: {
+  following?: {
     totalCount: number;
   };
   createdAt: string;

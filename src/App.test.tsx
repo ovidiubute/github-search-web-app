@@ -46,7 +46,7 @@ describe("Main App", () => {
 
       // Summary of 0 results
       const summaryElement = await waitForElement(() =>
-        getByText(/showing 0 results/i)
+        getByText(/No results/i)
       );
       expect(summaryElement).toBeInTheDocument();
 

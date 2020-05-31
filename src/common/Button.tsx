@@ -1,13 +1,16 @@
 import * as React from "react";
-import "./SearchButton.css";
+import "./Button.css";
 
-export const SearchButton = (
+export const Button = (
   props: React.DetailedHTMLProps<
     React.InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   >
 ) => {
   return (
-    <input className="searchButton" type="submit" value="Search" {...props} />
+    <input
+      {...props}
+      className={`button ${props.className ? props.className : ""}`}
+    />
   );
 };

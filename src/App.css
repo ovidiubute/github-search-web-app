@@ -25,10 +25,6 @@
   width: 100%;
 }
 
-.sectionResults > .userCard:first-child {
-  margin-top: 16px;
-}
-
 .sectionResults > .userCard {
   margin-bottom: 8px;
 }

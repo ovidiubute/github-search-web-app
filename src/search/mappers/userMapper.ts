@@ -11,10 +11,18 @@ export const fromUserToCardProps = (user: User): UserCardProps => {
     company,
     location,
     name,
-    following: { totalCount: followingCount },
-    followers: { totalCount: followersCount },
     createdAt,
   } = user;
+
+  let followersCount = 0;
+  if (user.followers !== undefined) {
+    followersCount = user.followers.totalCount;
+  }
+
+  let followingCount = 0;
+  if (user.following !== undefined) {
+    followingCount = user.following.totalCount;
+  }
 
   return {
     profileUrl: url,

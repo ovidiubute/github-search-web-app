@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./App.css";
-import { SearchButton } from "./search/components/SearchButton";
-import { SearchInput } from "./search/components/SearchInput";
-import { UserCard } from "./search/components/UserCard";
-import { fromUserToCardProps } from "./search/mappers/userMapper";
-import { SearchResults, searchUsers } from "./search/services/searchService";
+import { PaginationControl } from "./search/components/PaginationControl";
+import { SearchFormSection } from "./search/components/SearchFormSection";
+import { SearchResultsSection } from "./search/components/SearchResultsSection";
+import { SearchResultsSummary } from "./search/components/SearchResultsSummary";
+import { SearchResults } from "./search/services/searchService";
 
 export const App = () => {
   const [searchResults, setSearchResults] = useState<SearchResults>({
@@ -23,83 +23,28 @@ export const App = () => {
 
   return (
     <div className="main">
-      <section className="sectionForm" data-testid="section-form">
-        <form>
-          <SearchInput
-            value={query}
-            onChange={(e) => {
-              setQuery(e.target.value);
-            }}
-          />
-          <SearchButton
-            disabled={isLoading}
-            onClick={async (e) => {
-              e.preventDefault();
-
-              setIsLoading(true);
-              const results = await searchUsers(query);
-              setSearchResults(results);
-              setIsLoading(false);
-              setDirty(true);
-            }}
-          />
-        </form>
-      </section>
-      {dirty && (
-        <section data-testid="section-results-summary">
-          <p>Showing {searchResults.userCount} results.</p>
-        </section>
-      )}
+      <SearchFormSection
+        setQuery={setQuery}
+        setDirty={setDirty}
+        query={query}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+        setSearchResults={setSearchResults}
+      />
+      {dirty && <SearchResultsSummary userCount={searchResults.userCount} />}
       {searchResults.nodes.length > 0 && (
         <>
-          <section
-            className="sectionResults"
-            data-testid="section-results-full"
-          >
-            {searchResults.nodes.map((user) => {
-              return <UserCard key={user.id} {...fromUserToCardProps(user)} />;
-            })}
-          </section>
-          <section data-testid="section-pagination">
-            {searchResults.pageInfo.hasPreviousPage && (
-              <button
-                type="button"
-                disabled={isLoading}
-                onClick={async (e) => {
-                  e.preventDefault();
-
-                  setIsLoading(true);
-                  const results = await searchUsers(
-                    query,
-                    searchResults.pageInfo.startCursor
-                  );
-                  setSearchResults(results);
-                  setIsLoading(false);
-                }}
-              >
-                Previous
-              </button>
-            )}
-            {searchResults.pageInfo.hasNextPage && (
-              <button
-                type="button"
-                disabled={isLoading}
-                onClick={async (e) => {
-                  e.preventDefault();
-
-                  const results = await searchUsers(
-                    query,
-                    null,
-                    searchResults.pageInfo.endCursor
-                  );
-                  setSearchResults(results);
-                  setIsLoading(false);
-                }}
-              >
-                Next
-              </button>
-            )}
-          </section>
+          <PaginationControl
+            hasNextPage={searchResults.pageInfo.hasNextPage}
+            hasPreviousPage={searchResults.pageInfo.hasPreviousPage}
+            endCursor={searchResults.pageInfo.endCursor}
+            startCursor={searchResults.pageInfo.startCursor}
+            query={query}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
+            setSearchResults={setSearchResults}
+          />
+          <SearchResultsSection searchResults={searchResults} />
         </>
       )}
     </div>
