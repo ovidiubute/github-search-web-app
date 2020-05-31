@@ -7,6 +7,7 @@ export type SearchResults = {
   pageInfo: {
     hasNextPage: boolean;
     hasPreviousPage: boolean;
+    startCursor: string | null;
     endCursor: string | null;
   };
 };
@@ -16,32 +17,52 @@ type GraphQLSearchResponse = {
 };
 
 export const searchUsers = async (
-  searchTerm: string
+  searchTerm: string,
+  beforeCursor?: string | null,
+  afterCursor?: string | null
 ): Promise<SearchResults> => {
-  if (searchTerm.trim() === "") {
+  const validQuery = searchTerm.trim();
+
+  if (validQuery === "") {
     return Promise.resolve({
       userCount: 0,
       nodes: [],
       pageInfo: {
         hasNextPage: false,
         hasPreviousPage: false,
+        startCursor: null,
         endCursor: null,
       },
     });
   }
 
-  const endpoint = "https://api.github.com/graphql";
-
-  const graphQLClient = new GraphQLClient(endpoint, {
+  const graphQLClient = new GraphQLClient("https://api.github.com/graphql", {
     headers: {
       authorization: `Bearer ${process.env.REACT_APP_GITHUB_TOKEN}`,
     },
   });
 
+  const maybeAfterClause = afterCursor ? `, after: "${afterCursor}"` : "";
+  const maybeBeforeClause = beforeCursor ? `, before: "${beforeCursor}"` : "";
+
+  const paginationDirection = beforeCursor ? -1 : 1;
+  const maybeLimit =
+    paginationDirection === 1
+      ? ", first: 10"
+      : paginationDirection === -1
+      ? ", last: 10"
+      : "";
+
   try {
     const data: GraphQLSearchResponse = await graphQLClient.request(
       `{
-          search(query: "${searchTerm.trim()}", type: USER, first: 10){
+          search(
+            query: "${validQuery}", 
+            type: USER, 
+            ${maybeLimit}
+            ${maybeAfterClause}
+            ${maybeBeforeClause}
+          ) {
             userCount
             nodes {
               ...on User {
@@ -58,6 +79,7 @@ export const searchUsers = async (
             pageInfo{
               hasNextPage
               hasPreviousPage
+              startCursor
               endCursor
             }
           }

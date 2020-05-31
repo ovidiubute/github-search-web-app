@@ -6,6 +6,7 @@ export function buildEmptyResults(): SearchResults {
     userCount: 0,
     nodes: [],
     pageInfo: {
+      startCursor: null,
       endCursor: null,
       hasNextPage: false,
       hasPreviousPage: false,
@@ -31,6 +32,7 @@ export function buildTenResults(): SearchResults {
       return u;
     }),
     pageInfo: {
+      startCursor: null,
       endCursor: null,
       hasNextPage: false,
       hasPreviousPage: false,
