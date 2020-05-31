@@ -1,0 +1,18 @@
+.main {
+  margin-top: 96px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.sectionForm > form {
+  display: flex;
+  width: 400px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sectionForm > form > .searchInput {
+  margin-right: 8px;
+}

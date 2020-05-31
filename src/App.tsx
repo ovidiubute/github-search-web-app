@@ -1,5 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
+import { SearchButton } from "./search/components/SearchButton";
+import { SearchInput } from "./search/components/SearchInput";
 import { UserCard } from "./search/components/UserCard";
 import { fromUserToCardProps } from "./search/mappers/userMapper";
 import { SearchResults, searchUsers } from "./search/services/searchService";
@@ -18,29 +20,18 @@ export const App = () => {
   const [query, setQuery] = useState<string>("");
   const [dirty, setDirty] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const searchInputEl = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    const node = searchInputEl?.current;
-    node?.focus();
-  }, []);
 
   return (
     <div className="main">
-      <section data-testid="section-form">
+      <section className="sectionForm" data-testid="section-form">
         <form>
-          <input
-            type="text"
-            placeholder="Search GitHub users"
-            ref={searchInputEl}
+          <SearchInput
             value={query}
             onChange={(e) => {
               setQuery(e.target.value);
             }}
           />
-          <input
-            type="submit"
-            value="OK"
+          <SearchButton
             disabled={isLoading}
             onClick={async (e) => {
               e.preventDefault();

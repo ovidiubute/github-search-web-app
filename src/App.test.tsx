@@ -24,7 +24,7 @@ describe("Main App", () => {
       expect(searchElement.getAttribute("value")).toBe("");
 
       // Submit
-      const searchButton = getByText(/OK/);
+      const searchButton = getByText(/Search/i);
       expect(searchButton).toBeInTheDocument();
 
       // No results
@@ -42,7 +42,7 @@ describe("Main App", () => {
       const { getByText, getByTestId } = render(<App />);
 
       // Search
-      getByText(/OK/).click();
+      getByText(/Search/i).click();
 
       // Summary of 0 results
       const summaryElement = await waitForElement(() =>
@@ -70,7 +70,7 @@ describe("Main App", () => {
           value: "test",
         },
       });
-      getByText(/OK/).click();
+      getByText(/Search/i).click();
 
       // Summary of 10 results
       const summaryElement = await waitForElement(() =>
