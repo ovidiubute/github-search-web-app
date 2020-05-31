@@ -16,8 +16,7 @@ export const PaginationControl = (props: PaginationControlProps) => {
       {props.hasPreviousPage && (
         <Button
           type="button"
-          value="Previous"
-          disabled={props.isLoading}
+          isLoading={props.isLoading}
           onClick={async (e) => {
             e.preventDefault();
 
@@ -26,17 +25,19 @@ export const PaginationControl = (props: PaginationControlProps) => {
             props.setSearchResults(results);
             props.setIsLoading(false);
           }}
-        />
+        >
+          Previous
+        </Button>
       )}
       {props.hasNextPage && (
         <Button
           type="button"
-          value="Next"
           className="nextPageButton"
-          disabled={props.isLoading}
+          isLoading={props.isLoading}
           onClick={async (e) => {
             e.preventDefault();
 
+            props.setIsLoading(true);
             const results = await searchUsers(
               props.query,
               null,
@@ -45,7 +46,9 @@ export const PaginationControl = (props: PaginationControlProps) => {
             props.setSearchResults(results);
             props.setIsLoading(false);
           }}
-        />
+        >
+          Next
+        </Button>
       )}
     </section>
   );

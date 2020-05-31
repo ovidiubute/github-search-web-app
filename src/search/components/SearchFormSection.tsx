@@ -25,18 +25,19 @@ export const SearchFormSection = (props: SearchFormSectionProps) => {
         />
         <Button
           type="submit"
-          value="Search"
-          disabled={props.isLoading}
+          isLoading={props.isLoading}
           onClick={async (e) => {
             e.preventDefault();
 
             props.setIsLoading(true);
             const results = await searchUsers(props.query);
             props.setSearchResults(results);
-            props.setIsLoading(false);
             props.setDirty(true);
+            props.setIsLoading(false);
           }}
-        />
+        >
+          Search
+        </Button>
       </form>
     </section>
   );
