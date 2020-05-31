@@ -93,6 +93,9 @@ export const searchUsers = async (
         }`
     );
 
+    // GitHub API sometimes includes an empty node object
+    data.search.nodes = data.search.nodes.filter((n) => Object.keys(n).length);
+
     return Promise.resolve(data.search);
   } catch (e) {
     return Promise.reject(e);
