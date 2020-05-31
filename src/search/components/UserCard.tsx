@@ -1,3 +1,4 @@
+import format from "date-fns/format";
 import * as React from "react";
 import { User } from "../types/user";
 import { MapPin } from "./MapPin";
@@ -14,6 +15,8 @@ export type UserCardProps = Omit<
 };
 
 export const UserCard = (props: UserCardProps) => {
+  const prettyDate = format(new Date(props.createdAt), "PP");
+
   return (
     <div className="userCard">
       <header>
@@ -27,6 +30,7 @@ export const UserCard = (props: UserCardProps) => {
         />
         <div className="headerInfo">
           <span>{props.followers} Followers</span>
+          <span>Joined {prettyDate}</span>
         </div>
       </header>
       <section>

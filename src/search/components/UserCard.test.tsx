@@ -23,4 +23,10 @@ it("renders complete user information", () => {
 
   const bioElement = getByText(/Here is a short testing bio/i);
   expect(bioElement).toBeInTheDocument();
+
+  const followersElement = getByText(/3 Followers/i);
+  expect(followersElement).toBeInTheDocument();
+
+  const createdAtElement = getByText(/Joined May 2, 2019/i);
+  expect(createdAtElement).toBeInTheDocument();
 });
