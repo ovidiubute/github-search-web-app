@@ -5,12 +5,12 @@ export type SearchResultsSummaryProps = {
 };
 
 export const SearchResultsSummary = (props: SearchResultsSummaryProps) => {
-  let message = `Showing ${props.userCount} results 😎.`;
+  let message = `Showing ${props.userCount} results 😎`;
 
   if (props.userCount === 0) {
-    message = "No results 😥.";
+    message = "No results 😥";
   } else if (props.userCount === 1) {
-    message = "Showing just one result 😲.";
+    message = "Showing just one result 😲";
   }
 
   return (
