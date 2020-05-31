@@ -18,6 +18,7 @@ export const UserCard = (props: UserCardProps) => {
           width={96}
           height={96}
           alt=""
+          loading="lazy"
         />
       </header>
       <section>

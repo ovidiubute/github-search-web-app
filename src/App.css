@@ -6,6 +6,10 @@
   flex-direction: column;
 }
 
+.main > section {
+  margin-bottom: 8px;
+}
+
 .sectionForm > form {
   display: flex;
   width: 400px;
@@ -18,6 +22,7 @@
 }
 
 .sectionResults {
+  width: 100%;
 }
 
 .sectionResults > .userCard:first-child {
